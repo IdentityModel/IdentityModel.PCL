@@ -9,6 +9,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "IdentityModel.Shared", "Ide
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityModel.Net45", "IdentityModel.Net45\IdentityModel.Net45.csproj", "{1E8C7B7F-A91A-4E13-ADC1-F2BAA041A5B9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7D34212A-036A-47FF-84C0-9BE5005D427F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		IdentityModel.Shared\IdentityModel.Shared.projitems*{f833ac22-329e-40f3-8197-14d2f1411c07}*SharedItemsImports = 4
