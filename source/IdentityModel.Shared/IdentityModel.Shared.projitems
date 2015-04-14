@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Client\BasicAuthenticationHeaderValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\EpochTimeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\HttpClientExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\OAuth2Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\TokenResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoResponse.cs" />
