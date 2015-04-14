@@ -7,26 +7,28 @@
     <copyright>Dominick Baier, Brock Allen 2013</copyright>
 
     <projectUrl>http://github.com/identitymodel</projectUrl>
-    <iconUrl>http://1.gravatar.com/blavatar/3b437c799e12e32beb1d8cfda1199ab3?s=32</iconUrl>
+    <iconUrl>https://identityserver.github.io/Documentation/assets/images/icons/IDmodel_icon128.png</iconUrl>
 
     <id>IdentityModel</id>
     <title>IdentityModel</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     
-    <description>OAuth 2.0 and OpenID Connect client and helpers for parsing token and authorize responses, Epoch Time helpers, extensions methods for HttpClient.</description>
-    <summary>OAuth 2.0 and OpenID Connect client and helpers for parsing token and authorize responses, Epoch Time helpers, extensions methods for HttpClient.</summary>
+    <description>Helper library for claims-based identity, System.IdentityModel, JSON Web Tokens, OAuth 2.0 and OpenID Connect client</description>
+    <summary>Helper library for claims-based identity, System.IdentityModel, JSON Web Tokens, OAuth 2.0 and OpenID Connect client</summary>
     
     <language>en-US</language>
     <tags>OAuth2 OIDC OpenID Connect JWT Tokens Federation API Authorization</tags>
 
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net45" />
+      <frameworkAssembly assemblyName="System.IdentityModel" targetFramework="net45" />
     </frameworkAssemblies>
 
     <dependencies>
       <group targetFramework="portable-net45+win+wpa81">
       	<dependency id="Newtonsoft.Json" version="6.0.8" />
       </group>
+      
       <group targetFramework="net45">
       	<dependency id="Newtonsoft.Json" version="6.0.8" />
       </group>
