@@ -52,10 +52,5 @@ namespace IdentityModel
                 store.Close();
             }
         }
-
-        //public X509Certificate2 FindFirst(object findValue, bool validOnly = true)
-        //{
-        //    return FindAll(findValue, validOnly).FirstOrDefault();
-        //}
     }
 }

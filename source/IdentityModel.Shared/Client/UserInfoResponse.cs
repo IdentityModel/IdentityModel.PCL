@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using Newtonsoft.Json.Linq;
 
 namespace IdentityModel.Client
 {
