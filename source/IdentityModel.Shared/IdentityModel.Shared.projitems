@@ -10,6 +10,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Base64Url.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\AuthorizeResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\BasicAuthenticationHeaderValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\EpochTimeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\HttpClientExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\TokenResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JwtClaimTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OAuth2Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeConstantComparer.cs" />
   </ItemGroup>
 </Project>
