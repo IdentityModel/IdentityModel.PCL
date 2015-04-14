@@ -15,7 +15,7 @@
  */
 using System;
 
-namespace IdentityModel.Client
+namespace IdentityModel.Extensions
 {
     public static class EpochTimeExtensions
     {
