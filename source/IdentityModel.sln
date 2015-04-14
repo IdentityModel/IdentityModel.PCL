@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityModel.Portable", "IdentityModel.Portable\IdentityModel.Portable.csproj", "{F833AC22-329E-40F3-8197-14D2F1411C07}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "IdentityModel.Shared", "IdentityModel.Shared\IdentityModel.Shared.shproj", "{54B74C53-5F20-44B0-AA4A-4D3CE3BE8C91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityModel.Net45", "IdentityModel.Net45\IdentityModel.Net45.csproj", "{1E8C7B7F-A91A-4E13-ADC1-F2BAA041A5B9}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		IdentityModel.Shared\IdentityModel.Shared.projitems*{f833ac22-329e-40f3-8197-14d2f1411c07}*SharedItemsImports = 4
+		IdentityModel.Shared\IdentityModel.Shared.projitems*{1e8c7b7f-a91a-4e13-adc1-f2baa041a5b9}*SharedItemsImports = 4
+		IdentityModel.Shared\IdentityModel.Shared.projitems*{54b74c53-5f20-44b0-aa4a-4d3ce3be8c91}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F833AC22-329E-40F3-8197-14D2F1411C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F833AC22-329E-40F3-8197-14D2F1411C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F833AC22-329E-40F3-8197-14D2F1411C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F833AC22-329E-40F3-8197-14D2F1411C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E8C7B7F-A91A-4E13-ADC1-F2BAA041A5B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E8C7B7F-A91A-4E13-ADC1-F2BAA041A5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E8C7B7F-A91A-4E13-ADC1-F2BAA041A5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E8C7B7F-A91A-4E13-ADC1-F2BAA041A5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
