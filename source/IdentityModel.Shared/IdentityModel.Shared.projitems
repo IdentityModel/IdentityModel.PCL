@@ -17,8 +17,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Client\TokenResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)JwtClaimTypes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OAuth2Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\Algorithms.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\JwtClaimTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\OAuth2Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\SamlNameIdentifierFormats.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\TokenTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeConstantComparer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)default.licenseheader" />
   </ItemGroup>
 </Project>
