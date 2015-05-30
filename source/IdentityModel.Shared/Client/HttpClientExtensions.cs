@@ -14,20 +14,33 @@
  * limitations under the License.
  */
 using IdentityModel.Client;
+#if __UNIVERSAL__
+using Windows.Web.Http.Headers;
+#else
 using System.Net.Http.Headers;
+#endif
 
+#if __UNIVERSAL__
+namespace Windows.Web.Http
+#else
 namespace System.Net.Http
+#endif
 {
     public static class HttpClientExtensions
     {
         public static void SetBasicAuthentication(this HttpClient client, string userName, string password)
         {
-            client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(userName, password);
+			client.DefaultRequestHeaders.Authorization = new BasicAuthentication(userName, password).HeaderValue;
         }
 
         public static void SetToken(this HttpClient client, string scheme, string token)
         {
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme, token);
+            client.DefaultRequestHeaders.Authorization = 
+#if __UNIVERSAL__
+				new HttpCredentialsHeaderValue(scheme, token);
+#else
+				new AuthenticationHeaderValue(scheme, token);
+#endif
         }
 
         public static void SetBearerToken(this HttpClient client, string token)

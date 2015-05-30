@@ -16,7 +16,12 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+#if __UNIVERSAL__
+using Windows.Web;
+using Windows.Web.Http;
+#else
 using System.Net;
+#endif
 
 namespace IdentityModel.Client
 {
