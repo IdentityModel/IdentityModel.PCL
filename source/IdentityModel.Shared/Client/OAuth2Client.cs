@@ -39,7 +39,9 @@ namespace IdentityModel.Client
 		protected string _clientSecret;
 
 #if __UNIVERSAL__
-		protected TimeSpan _timeout;
+		// TODO if Windows.Web.Http.HttpClient does not have a timeout, perhaps we shouldn't specify one
+		// https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.timeout%28v=vs.100%29.aspx
+		protected TimeSpan _timeout = TimeSpan.FromSeconds(100);
 #endif
 
 		public enum ClientAuthenticationStyle
@@ -232,6 +234,23 @@ namespace IdentityModel.Client
 				System.Net.WebUtility.UrlEncode(kvp.Key), System.Net.WebUtility.UrlEncode(kvp.Value))).ToArray());
 			return string.Format("{0}?{1}", endpoint.AbsoluteUri, qs);
 		}
+
+		public async Task<int> InternalActionAsync(CancellationToken token)
+		{
+			// do something with the token...
+			return 1;
+		}
+		
+		public Task<int> ExternalActionAsync(CancellationToken token = default(CancellationToken))
+		{
+			var internalTokenSource =
+				new CancellationTokenSource((int)_timeout.TotalMilliseconds);
+			var linkedTokenSource =
+				CancellationTokenSource.CreateLinkedTokenSource(token, internalTokenSource.Token);
+
+			return InternalActionAsync(linkedTokenSource.Token);
+		}
+
 
 		public Task<TokenResponse> RequestResourceOwnerPasswordAsync(string userName, string password, string scope = null, Dictionary<string, string> additionalValues = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
