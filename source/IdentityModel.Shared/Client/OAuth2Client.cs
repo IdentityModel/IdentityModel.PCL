@@ -17,8 +17,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if __UNIVERSAL__
+using Windows.Web;
+using Windows.Web.Http;
+using Windows.Web.Http.Filters;
+#else
 using System.Net;
 using System.Net.Http;
+#endif
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,35 +46,61 @@ namespace IdentityModel.Client
         };
 
         public OAuth2Client(Uri address)
+#if __UNIVERSAL__
+            : this(address, new HttpBaseProtocolFilter())
+#else
             : this(address, new HttpClientHandler())
-        { }
-
-        public OAuth2Client(Uri address, HttpMessageHandler innerHttpClientHandler)
+#endif
         {
+            _address = address;
+        }
+
+#if __UNIVERSAL__
+        public OAuth2Client(Uri address, HttpBaseProtocolFilter innerHttpClientHandler)
+#else
+        public OAuth2Client(Uri address, HttpMessageHandler innerHttpClientHandler)
+#endif
+        {
+            if (address == null)
+                throw new ArgumentNullException("address");
+
             if (innerHttpClientHandler == null)
             {
                 throw new ArgumentNullException("innerHttpClientHandler");
             }
 
-            _client = new HttpClient(innerHttpClientHandler)
-            {
-                BaseAddress = address
-            };
+            _address = address;
 
+            _client = new HttpClient(innerHttpClientHandler)
+            {						
+#if !__UNIVERSAL__	
+                BaseAddress = address
+#endif
+            };
+        
             _address = address;
             _authenticationStyle = ClientAuthenticationStyle.None;
         }
 
         public OAuth2Client(Uri address, string clientId, string clientSecret, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
+#if __UNIVERSAL__
+            : this(address, clientId, clientSecret, new HttpBaseProtocolFilter(), style)
+#else
             : this(address, clientId, clientSecret, new HttpClientHandler(), style)
-        { }
+#endif
+            { }
 
+#if __UNIVERSAL__
+        public OAuth2Client(Uri address, string clientId, string clientSecret, HttpBaseProtocolFilter innerHttpClientHandler, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
+#else
         public OAuth2Client(Uri address, string clientId, string clientSecret, HttpMessageHandler innerHttpClientHandler, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
-            : this(address, innerHttpClientHandler)
+#endif
+        : this(address, innerHttpClientHandler)
         {
             if (style == ClientAuthenticationStyle.BasicAuthentication)
             {
-                _client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(clientId, clientSecret);
+                _client.DefaultRequestHeaders.Authorization = 
+                    new BasicAuthentication(clientId, clientSecret).HeaderValue;
             }
             else if (style == ClientAuthenticationStyle.PostValues)
             {
@@ -78,6 +110,7 @@ namespace IdentityModel.Client
             }
         }
 
+#if !__UNIVERSAL__
         public TimeSpan Timeout 
         { 
             set
@@ -85,6 +118,7 @@ namespace IdentityModel.Client
                 _client.Timeout = value;
             }
         }
+#endif
 
         public string CreateCodeFlowUrl(
             string clientId, 
@@ -188,7 +222,8 @@ namespace IdentityModel.Client
 
         public static string CreateAuthorizeUrl(Uri endpoint, Dictionary<string, string> values)
         {
-            var qs = string.Join("&", values.Select(kvp => String.Format("{0}={1}", WebUtility.UrlEncode(kvp.Key), WebUtility.UrlEncode(kvp.Value))).ToArray());
+            var qs = string.Join("&", values.Select(kvp => String.Format("{0}={1}",
+                System.Net.WebUtility.UrlEncode(kvp.Key), System.Net.WebUtility.UrlEncode(kvp.Value))).ToArray());
             return string.Format("{0}?{1}", endpoint.AbsoluteUri, qs);
         }
 
@@ -285,11 +320,26 @@ namespace IdentityModel.Client
 
         public async Task<TokenResponse> RequestAsync(Dictionary<string, string> form, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var response = await _client.PostAsync(string.Empty, new FormUrlEncodedContent(form), cancellationToken).ConfigureAwait(false);
+#if __UNIVERSAL__
+            var response = await _client.PostAsync(_address,
+                new HttpFormUrlEncodedContent(form)).AsTask(cancellationToken).ConfigureAwait(false);
+#else
+            var response = await _client.PostAsync(string.Empty,
+                new FormUrlEncodedContent(form), cancellationToken).ConfigureAwait(false); 
+#endif
 
-            if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.BadRequest)
+#if __UNIVERSAL__
+            if (response.StatusCode == HttpStatusCode.Ok ||
+#else
+            if (response.StatusCode == HttpStatusCode.OK || 
+#endif
+                response.StatusCode == HttpStatusCode.BadRequest)
             {
+#if __UNIVERSAL__
+                var content = await response.Content.ReadAsStringAsync().AsTask(cancellationToken).ConfigureAwait(false);
+#else
                 var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+#endif
                 return new TokenResponse(content);
             }
             else
