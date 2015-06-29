@@ -14,19 +14,23 @@
  * limitations under the License.
  */
 
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace IdentityModel.Client
 {
     public static partial class OAuth2ClientExtensions
     {
-        public static Task<TokenResponse> RequestClientCredentialsAsync(this OAuth2Client client, string scope = null, Dictionary<string, string> additionalValues = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TokenResponse> RequestClientCredentialsAsync(this OAuth2Client client, string scope = null, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var values = ObjectToDictionary(extra);
+            return client.RequestClientCredentialsAsync(scope, values, cancellationToken);
+        }
+
+        public static Task<TokenResponse> RequestClientCredentialsAsync(this OAuth2Client client, string scope = null, Dictionary<string, string> extra = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var fields = new Dictionary<string, string>
             {
@@ -38,7 +42,13 @@ namespace IdentityModel.Client
                 fields.Add(OAuth2Constants.Scope, scope);
             }
 
-            return client.RequestAsync(Merge(client, fields, additionalValues), cancellationToken);
+            return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
+        }
+
+        public static Task<TokenResponse> RequestResourceOwnerPasswordAsync(this OAuth2Client client, string userName, string password, string scope = null, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var values = ObjectToDictionary(extra);
+            return client.RequestResourceOwnerPasswordAsync(userName, password, scope, values, cancellationToken);
         }
 
         public static Task<TokenResponse> RequestResourceOwnerPasswordAsync(this OAuth2Client client, string userName, string password, string scope = null, Dictionary<string, string> additionalValues = null, CancellationToken cancellationToken = default(CancellationToken))
@@ -58,7 +68,13 @@ namespace IdentityModel.Client
             return client.RequestAsync(Merge(client, fields, additionalValues), cancellationToken);
         }
 
-        public static Task<TokenResponse> RequestAuthorizationCodeAsync(this OAuth2Client client, string code, string redirectUri, Dictionary<string, string> additionalValues = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TokenResponse> RequestAuthorizationCodeAsync(this OAuth2Client client, string code, string redirectUri, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var values = ObjectToDictionary(extra);
+            return client.RequestAuthorizationCodeAsync(code, redirectUri, values, cancellationToken);
+        }
+
+        public static Task<TokenResponse> RequestAuthorizationCodeAsync(this OAuth2Client client, string code, string redirectUri, Dictionary<string, string> extra = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var fields = new Dictionary<string, string>
             {
@@ -67,10 +83,16 @@ namespace IdentityModel.Client
                 { OAuth2Constants.RedirectUri, redirectUri }
             };
 
-            return client.RequestAsync(Merge(client, fields, additionalValues), cancellationToken);
+            return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
 
-        public static Task<TokenResponse> RequestRefreshTokenAsync(this OAuth2Client client, string refreshToken, Dictionary<string, string> additionalValues = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TokenResponse> RequestRefreshTokenAsync(this OAuth2Client client, string refreshToken, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var values = ObjectToDictionary(extra);
+            return client.RequestRefreshTokenAsync(refreshToken, values, cancellationToken);
+        }
+
+        public static Task<TokenResponse> RequestRefreshTokenAsync(this OAuth2Client client, string refreshToken, Dictionary<string, string> extra = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var fields = new Dictionary<string, string>
             {
@@ -78,10 +100,16 @@ namespace IdentityModel.Client
                 { OAuth2Constants.RefreshToken, refreshToken }
             };
 
-            return client.RequestAsync(Merge(client, fields, additionalValues), cancellationToken);
+            return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
 
-        public static Task<TokenResponse> RequestAssertionAsync(this OAuth2Client client, string assertionType, string assertion, string scope = null, Dictionary<string, string> additionalValues = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TokenResponse> RequestAssertionAsync(this OAuth2Client client, string assertionType, string assertion, string scope = null, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var values = ObjectToDictionary(extra);
+            return client.RequestAssertionAsync(assertionType, assertion, scope, values, cancellationToken);
+        }
+
+        public static Task<TokenResponse> RequestAssertionAsync(this OAuth2Client client, string assertionType, string assertion, string scope = null, Dictionary<string, string> extra = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var fields = new Dictionary<string, string>
             {
@@ -94,10 +122,16 @@ namespace IdentityModel.Client
                 fields.Add(OAuth2Constants.Scope, scope);
             }
 
-            return client.RequestAsync(Merge(client, fields, additionalValues), cancellationToken);
+            return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
 
-        public static Task<TokenResponse> RequestCustomGrantAsync(this OAuth2Client client, string grantType, string scope = null, Dictionary<string, string> additionalValues = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TokenResponse> RequestCustomGrantAsync(this OAuth2Client client, string grantType, string scope = null, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var values = ObjectToDictionary(extra);
+            return client.RequestCustomGrantAsync(grantType, scope, values, cancellationToken);
+        }
+
+        public static Task<TokenResponse> RequestCustomGrantAsync(this OAuth2Client client, string grantType, string scope = null, Dictionary<string, string> extra = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var fields = new Dictionary<string, string>
             {
@@ -109,12 +143,17 @@ namespace IdentityModel.Client
                 fields.Add(OAuth2Constants.Scope, scope);
             }
 
-            return client.RequestAsync(Merge(client, fields, additionalValues), cancellationToken);
+            return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
 
-        public static Task<TokenResponse> RequestCustomAsync(this OAuth2Client client, Dictionary<string, string> values, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TokenResponse> RequestCustomAsync(this OAuth2Client client, object extra, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return client.RequestAsync(Merge(client, values), cancellationToken);
+            return client.RequestAsync(Merge(client, ObjectToDictionary(extra)), cancellationToken);
+        }
+
+        public static Task<TokenResponse> RequestCustomAsync(this OAuth2Client client, Dictionary<string, string> extra, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return client.RequestAsync(Merge(client, extra), cancellationToken);
         }
 
         private static Dictionary<string, string> Merge(OAuth2Client client, Dictionary<string, string> explicitValues, Dictionary<string, string> additionalValues = null)
@@ -143,23 +182,24 @@ namespace IdentityModel.Client
 
         private static Dictionary<string, string> ObjectToDictionary(object values)
         {
+            if (values == null)
+            {
+                return null;
+            }
+
             var dictionary = values as Dictionary<string, string>;
             if (dictionary != null) return dictionary;
 
             dictionary = new Dictionary<string, string>();
 
-            //foreach (var prop in values.GetType().GetProperties())
-            //{
-            //    var value = prop.GetValue(values) as string;
-            //    if (!string.IsNullOrEmpty(value))
-            //    {
-            //        dictionary.Add(prop.Name, value);
-            //    }
-            //}
-
-            //var dic = from property in values.GetType().GetProperties()
-            //  select new KeyValuePair<string,object>(property.Name, property.GetValue(oParams,null));
-    
+            foreach (var prop in values.GetType().GetRuntimeProperties())
+            {
+                var value = prop.GetValue(values) as string;
+                if (!string.IsNullOrEmpty(value))
+                {
+                    dictionary.Add(prop.Name, value);
+                }
+            }
 
             return dictionary;
         }
