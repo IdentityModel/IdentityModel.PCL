@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Base64Url.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\AuthorizeRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\AuthorizeRequestExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\AuthorizeResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\BasicAuthenticationHeaderValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\HttpClientExtensions.cs" />
