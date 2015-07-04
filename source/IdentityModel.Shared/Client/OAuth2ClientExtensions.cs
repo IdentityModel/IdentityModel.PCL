@@ -110,9 +110,9 @@ namespace IdentityModel.Client
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
 
-        public static Task<TokenResponse> RequestCustomAsync(this OAuth2Client client, object extra, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TokenResponse> RequestCustomAsync(this OAuth2Client client, object values, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return client.RequestAsync(Merge(client, ObjectToDictionary(extra)), cancellationToken);
+            return client.RequestAsync(Merge(client, ObjectToDictionary(values)), cancellationToken);
         }
 
         private static Dictionary<string, string> Merge(OAuth2Client client, Dictionary<string, string> explicitValues, object extra = null)
