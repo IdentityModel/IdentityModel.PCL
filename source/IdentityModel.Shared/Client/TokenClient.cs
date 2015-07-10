@@ -31,36 +31,36 @@ namespace IdentityModel.Client
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
 
-        public TokenClient(Uri address)
+        public TokenClient(string address)
             : this(address, new HttpClientHandler())
         { }
 
-        public TokenClient(Uri address, HttpMessageHandler innerHttpClientHandler)
+        public TokenClient(string address, HttpMessageHandler innerHttpClientHandler)
         {
             if (address == null) throw new ArgumentNullException("address");
             if (innerHttpClientHandler == null) throw new ArgumentNullException("innerHttpClientHandler");
             
             _client = new HttpClient(innerHttpClientHandler)
             {
-                BaseAddress = address
+                BaseAddress = new Uri(address)
             };
 
             AuthenticationStyle = AuthenticationStyle.None;
         }
 
-        public TokenClient(Uri address, string clientId, string clientSecret, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
+        public TokenClient(string address, string clientId, string clientSecret, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, clientId, clientSecret, new HttpClientHandler(), style)
         { }
 
-        public TokenClient(Uri address, string clientId, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
+        public TokenClient(string address, string clientId, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, clientId, string.Empty, new HttpClientHandler(), style)
         { }
 
-        public TokenClient(Uri address, string clientId, HttpMessageHandler innerHttpClientHandler)
+        public TokenClient(string address, string clientId, HttpMessageHandler innerHttpClientHandler)
             : this(address, clientId, string.Empty, innerHttpClientHandler, AuthenticationStyle.PostValues)
         { }
 
-        public TokenClient(Uri address, string clientId, string clientSecret, HttpMessageHandler innerHttpClientHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
+        public TokenClient(string address, string clientId, string clientSecret, HttpMessageHandler innerHttpClientHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, innerHttpClientHandler)
         {
             if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("ClientId");
