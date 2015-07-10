@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace IdentityModel.Client
 {
-    public class OAuth2Client
+    public class TokenClient
     {
         protected HttpClient _client;
         
@@ -38,11 +38,11 @@ namespace IdentityModel.Client
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
 
-        public OAuth2Client(Uri address)
+        public TokenClient(Uri address)
             : this(address, new HttpClientHandler())
         { }
 
-        public OAuth2Client(Uri address, HttpMessageHandler innerHttpClientHandler)
+        public TokenClient(Uri address, HttpMessageHandler innerHttpClientHandler)
         {
             if (address == null) throw new ArgumentNullException("address");
             if (innerHttpClientHandler == null) throw new ArgumentNullException("innerHttpClientHandler");
@@ -55,19 +55,19 @@ namespace IdentityModel.Client
             AuthenticationStyle = ClientAuthenticationStyle.None;
         }
 
-        public OAuth2Client(Uri address, string clientId, string clientSecret, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
+        public TokenClient(Uri address, string clientId, string clientSecret, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
             : this(address, clientId, clientSecret, new HttpClientHandler(), style)
         { }
 
-        public OAuth2Client(Uri address, string clientId, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
+        public TokenClient(Uri address, string clientId, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
             : this(address, clientId, string.Empty, new HttpClientHandler(), style)
         { }
 
-        public OAuth2Client(Uri address, string clientId, HttpMessageHandler innerHttpClientHandler)
+        public TokenClient(Uri address, string clientId, HttpMessageHandler innerHttpClientHandler)
             : this(address, clientId, string.Empty, innerHttpClientHandler, ClientAuthenticationStyle.PostValues)
         { }
 
-        public OAuth2Client(Uri address, string clientId, string clientSecret, HttpMessageHandler innerHttpClientHandler, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
+        public TokenClient(Uri address, string clientId, string clientSecret, HttpMessageHandler innerHttpClientHandler, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
             : this(address, innerHttpClientHandler)
         {
             if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("ClientId");
