@@ -27,50 +27,6 @@ namespace IdentityModel.Client
             return request.Create(ObjectToDictionary(values));
         }
 
-        public static string CreateCodeFlowUrl(this AuthorizeRequest request,
-            string clientId,
-            string scope = null,
-            string redirectUri = null,
-            string state = null,
-            string nonce = null,
-            string loginHint = null,
-            string acrValues = null,
-            object extra = null)
-        {
-            return request.CreateAuthorizeUrl(
-                clientId: clientId,
-                responseType: OAuth2Constants.ResponseTypes.Code,
-                scope: scope,
-                redirectUri: redirectUri,
-                state: state,
-                nonce: nonce,
-                loginHint: loginHint,
-                acrValues: acrValues,
-                extra: extra);
-        }
-
-        public static string CreateImplicitFlowUrl(this AuthorizeRequest request,
-            string clientId,
-            string scope = null,
-            string redirectUri = null,
-            string state = null,
-            string nonce = null,
-            string loginHint = null,
-            string acrValues = null,
-            object extra = null)
-        {
-            return request.CreateAuthorizeUrl(
-                clientId: clientId,
-                responseType: OAuth2Constants.ResponseTypes.Token,
-                scope: scope,
-                redirectUri: redirectUri,
-                state: state,
-                nonce: nonce,
-                loginHint: loginHint,
-                acrValues: acrValues,
-                extra: extra);
-        }
-
         public static string CreateAuthorizeUrl(this AuthorizeRequest request,
             string clientId,
             string responseType,
