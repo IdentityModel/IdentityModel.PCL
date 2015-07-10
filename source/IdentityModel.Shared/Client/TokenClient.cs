@@ -27,14 +27,7 @@ namespace IdentityModel.Client
     {
         protected HttpClient _client;
         
-        public enum ClientAuthenticationStyle
-        {
-            BasicAuthentication,
-            PostValues,
-            None
-        };
-
-        public ClientAuthenticationStyle AuthenticationStyle { get; set; }
+        public AuthenticationStyle AuthenticationStyle { get; set; }
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
 
@@ -52,31 +45,31 @@ namespace IdentityModel.Client
                 BaseAddress = address
             };
 
-            AuthenticationStyle = ClientAuthenticationStyle.None;
+            AuthenticationStyle = AuthenticationStyle.None;
         }
 
-        public TokenClient(Uri address, string clientId, string clientSecret, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
+        public TokenClient(Uri address, string clientId, string clientSecret, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, clientId, clientSecret, new HttpClientHandler(), style)
         { }
 
-        public TokenClient(Uri address, string clientId, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
+        public TokenClient(Uri address, string clientId, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, clientId, string.Empty, new HttpClientHandler(), style)
         { }
 
         public TokenClient(Uri address, string clientId, HttpMessageHandler innerHttpClientHandler)
-            : this(address, clientId, string.Empty, innerHttpClientHandler, ClientAuthenticationStyle.PostValues)
+            : this(address, clientId, string.Empty, innerHttpClientHandler, AuthenticationStyle.PostValues)
         { }
 
-        public TokenClient(Uri address, string clientId, string clientSecret, HttpMessageHandler innerHttpClientHandler, ClientAuthenticationStyle style = ClientAuthenticationStyle.BasicAuthentication)
+        public TokenClient(Uri address, string clientId, string clientSecret, HttpMessageHandler innerHttpClientHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, innerHttpClientHandler)
         {
             if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("ClientId");
 
-            if (style == ClientAuthenticationStyle.BasicAuthentication)
+            if (style == AuthenticationStyle.BasicAuthentication)
             {
                 _client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(clientId, clientSecret);
             }
-            else if (style == ClientAuthenticationStyle.PostValues)
+            else if (style == AuthenticationStyle.PostValues)
             {
                 AuthenticationStyle = style;
                 ClientId = clientId;

@@ -119,7 +119,7 @@ namespace IdentityModel.Client
         {
             var merged = explicitValues;
 
-            if (client.AuthenticationStyle == TokenClient.ClientAuthenticationStyle.PostValues)
+            if (client.AuthenticationStyle == AuthenticationStyle.PostValues)
             {
                 merged.Add(OAuth2Constants.ClientId, client.ClientId);
 
