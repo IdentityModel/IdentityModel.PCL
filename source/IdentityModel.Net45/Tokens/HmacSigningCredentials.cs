@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
+using IdentityModel.Constants;
 using System;
 using System.IdentityModel.Tokens;
-using IdentityModel.Constants;
 
 namespace IdentityModel.Tokens
 {

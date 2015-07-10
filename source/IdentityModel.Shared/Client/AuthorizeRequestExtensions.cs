@@ -22,9 +22,9 @@ namespace IdentityModel.Client
 {
     public static class AuthorizeRequestExtensions
     {
-        public static string CreateUrl(this AuthorizeRequest request, object values)
+        public static string Create(this AuthorizeRequest request, object values)
         {
-            return request.CreateUrl(ObjectToDictionary(values));
+            return request.Create(ObjectToDictionary(values));
         }
 
         public static string CreateCodeFlowUrl(this AuthorizeRequest request,
@@ -124,7 +124,7 @@ namespace IdentityModel.Client
                 values.Add(OAuth2Constants.ResponseMode, responseMode);
             }
 
-            return request.CreateUrl(Merge(values, ObjectToDictionary(extra)));
+            return request.Create(Merge(values, ObjectToDictionary(extra)));
         }
 
         private static Dictionary<string, string> ObjectToDictionary(object values)

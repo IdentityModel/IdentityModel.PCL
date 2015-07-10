@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-using System;
+
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace IdentityModel.Client
+namespace System.Net.Http
 {
     public class BasicAuthenticationHeaderValue : AuthenticationHeaderValue
     {

@@ -17,15 +17,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Client\HttpClientExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\OAuth2Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\OAuth2ClientExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\OAuth2Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\TokenResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\Algorithms.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Constants\JwtClaimTypes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Constants\OAuth2Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\SamlNameIdentifierFormats.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\TokenTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EpochTimeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JwtClaimTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeConstantComparer.cs" />
   </ItemGroup>
   <ItemGroup>

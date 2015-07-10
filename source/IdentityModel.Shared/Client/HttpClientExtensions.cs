@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-using IdentityModel.Client;
+
 using System.Net.Http.Headers;
 
 namespace System.Net.Http

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using System.Collections.Generic;
 
@@ -20,15 +21,6 @@ namespace IdentityModel.Client
 {
     public class AuthorizeResponse
     {
-        public enum ResponseTypes
-        {
-            AuthorizationCode,
-            Token,
-            FormPost,
-            Error
-        };
-
-        public ResponseTypes ResponseType { get; protected set; }
         public string Raw { get; protected set; }
         public Dictionary<string, string> Values { get; protected set; }
 
@@ -55,6 +47,8 @@ namespace IdentityModel.Client
                 return TryGet(OAuth2Constants.IdentityToken);
             }
         }
+
+        public bool IsError { get; internal set; }
 
         public string Error
         {
@@ -117,24 +111,21 @@ namespace IdentityModel.Client
             if (Raw.Contains("#"))
             {
                 fragments = Raw.Split('#');
-                ResponseType = ResponseTypes.Token;
             }
             // query string encoded
             else if (Raw.Contains("?"))
             {
                 fragments = Raw.Split('?');
-                ResponseType = ResponseTypes.AuthorizationCode;
             }
             // form encoded
             else
             {
                 fragments = new string[] { "", Raw };
-                ResponseType = ResponseTypes.FormPost;
             }
 
             if (Raw.Contains(OAuth2Constants.Error))
             {
-                ResponseType = ResponseTypes.Error;
+                IsError = true;
             }
 
             var qparams = fragments[1].Split('&');

@@ -35,7 +35,7 @@ namespace IdentityModel.Client
             _authorizeEndpoint = new Uri(authorizeEndpoint);
         }
 
-        public string CreateUrl(IDictionary<string, string> values)
+        public string Create(IDictionary<string, string> values)
         {
             var qs = string.Join("&", values.Select(kvp => String.Format("{0}={1}", WebUtility.UrlEncode(kvp.Key), WebUtility.UrlEncode(kvp.Value))).ToArray());
             return string.Format("{0}?{1}", _authorizeEndpoint.AbsoluteUri, qs);

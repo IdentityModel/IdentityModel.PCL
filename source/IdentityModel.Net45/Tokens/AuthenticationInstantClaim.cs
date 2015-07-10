@@ -17,7 +17,6 @@
 using System;
 using System.Security.Claims;
 using System.Xml;
-using IdentityModel.Constants;
 
 namespace IdentityModel.Tokens
 {
