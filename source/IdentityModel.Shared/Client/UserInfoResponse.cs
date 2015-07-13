@@ -61,6 +61,7 @@ namespace IdentityModel.Client
         public UserInfoResponse(HttpStatusCode statusCode, string httpErrorReason)
         {
             IsHttpError = true;
+            IsError = true;
             HttpErrorStatusCode = statusCode;
             HttpErrorReason = httpErrorReason;
         }

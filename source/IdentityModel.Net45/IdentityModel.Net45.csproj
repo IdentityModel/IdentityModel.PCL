@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClaimComparer.cs" />
+    <Compile Include="Client\UserInfoResponseExtensions.cs" />
     <Compile Include="CryptoRandom.cs" />
     <Compile Include="Extensions\ConsoleExtensions.cs" />
     <Compile Include="Extensions\SecurityTokens.cs" />
