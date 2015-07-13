@@ -29,6 +29,8 @@ namespace IdentityModel.Client
                 {
                     id.AddClaim(new Claim(c.Item1, c.Item2));
                 }
+
+                return id;
             }
 
             return null;
