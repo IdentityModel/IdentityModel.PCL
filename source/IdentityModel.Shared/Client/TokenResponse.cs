@@ -32,7 +32,15 @@ namespace IdentityModel.Client
         public TokenResponse(string raw)
         {
             Raw = raw;
-            Json = JObject.Parse(raw);
+
+            try
+            {
+                Json = JObject.Parse(raw);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Invalid JSON response", ex);
+            }
         }
 
         public TokenResponse(HttpStatusCode statusCode, string reason)
