@@ -4,7 +4,7 @@
     <version>1.0.0</version>
     <authors>Dominick Baier, Brock Allen</authors>
     <owners>Dominick Baier, Brock Allen</owners>
-    <copyright>Dominick Baier, Brock Allen 2013</copyright>
+    <copyright>Dominick Baier, Brock Allen 2015</copyright>
 
     <projectUrl>http://github.com/identitymodel</projectUrl>
     <iconUrl>https://identityserver.github.io/Documentation/assets/images/icons/IDmodel_icon128.png</iconUrl>
@@ -12,10 +12,10 @@
     <id>IdentityModel</id>
     <title>IdentityModel</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    
+
     <description>Helper library for claims-based identity, System.IdentityModel, JSON Web Tokens, OAuth 2.0 and OpenID Connect client</description>
     <summary>Helper library for claims-based identity, System.IdentityModel, JSON Web Tokens, OAuth 2.0 and OpenID Connect client</summary>
-    
+
     <language>en-US</language>
     <tags>OAuth2 OIDC OpenID Connect JWT Tokens Federation API Authorization</tags>
 
@@ -28,7 +28,7 @@
       <group targetFramework="portable-net45+win+wpa81">
       	<dependency id="Newtonsoft.Json" version="6.0.8" />
       </group>
-      
+
       <group targetFramework="net45">
       	<dependency id="Newtonsoft.Json" version="6.0.8" />
       </group>
