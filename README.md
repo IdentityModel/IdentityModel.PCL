@@ -20,7 +20,7 @@ Example:
 var client = new TokenClient(
     "https://server/token",
     "client_id",
-    "secret);
+    "secret");
     
 var response = await client.RequestClientCredentialsAsync("scope");
 var token = response.AccessToken;
