@@ -69,10 +69,10 @@ task CreateNuGetPackage -depends Compile {
 	new-item $dist_directory\lib\net45 -type directory
 	copy-item $output_directory\net45\IdentityModel.Net45.dll $dist_directory\lib\net45\
 	copy-item $output_directory\net45\IdentityModel.Net45.pdb $dist_directory\lib\net45\
-	
-	new-item $dist_directory\lib\portable-net45+win8+wpa81 -type directory
-	copy-item $output_directory\portable\IdentityModel.Portable.dll $dist_directory\lib\portable-net45+win8+wpa81\
-	copy-item $output_directory\portable\IdentityModel.Portable.pdb $dist_directory\lib\portable-net45+win8+wpa81\
+
+	new-item $dist_directory\lib\portable-net45+wp80+win8+wpa81 -type directory
+	copy-item $output_directory\portable\IdentityModel.Portable.dll $dist_directory\lib\portable-net45+wp80+win8+wpa81\
+	copy-item $output_directory\portable\IdentityModel.Portable.pdb $dist_directory\lib\portable-net45+wp80+win8+wpa81\
 	
 	exec { . $nuget_path pack $dist_directory\IdentityModel.nuspec -BasePath $dist_directory -o $dist_directory -version $packageVersion }
 }
