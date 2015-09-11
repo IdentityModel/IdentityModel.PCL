@@ -16,6 +16,7 @@
  
 namespace IdentityModel.Constants
 {
+    // see https://tools.ietf.org/html/draft-jones-oauth-amr-values-01
     public static class AuthenticationMethods
     {
         public const string Password                        = "pwd";
@@ -29,5 +30,8 @@ namespace IdentityModel.Constants
         public const string KnowledgeBasedAuthentication    = "kba";
         public const string WindowsIntegratedAuthentication = "wia";
         public const string MultiFactorAuthentication       = "mfa";
+        public const string UserPresenceTest                = "user";
+        public const string RiskBasedAuthentication         = "risk";
+        public const string MultipleChannelAuthentication   = "mfa";
     }
 }
