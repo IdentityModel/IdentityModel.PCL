@@ -6,7 +6,7 @@ properties {
 	$sln_file = "$src_directory\IdentityModel.sln"
 	$target_config = "Release"
 	$framework_version = "v4.5"
-	$nuget_path = "$src_directory\.nuget\nuget.exe"
+	$nuget_path = "$base_directory\nuget.exe"
 
 	$buildNumber = 0;
 	$version = "1.1.0.0"

@@ -3,9 +3,16 @@ Param(
 	[string]$preRelease = $null
 )
 
+$exists = Test-Path nuget.exe
+
+if ($exists -eq $false) {
+    $source = "https://www.nuget.org/nuget.exe"
+    Invoke-WebRequest $source -OutFile nuget.exe
+}
+
 gci .\source -Recurse "packages.config" |% {
 	"Restoring " + $_.FullName
-	.\source\.nuget\nuget.exe i $_.FullName -o .\source\packages
+	.\nuget.exe i $_.FullName -o .\source\packages
 }
 
 Import-Module .\source\packages\psake.4.4.1\tools\psake.psm1
