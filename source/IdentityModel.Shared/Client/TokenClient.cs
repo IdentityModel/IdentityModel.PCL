@@ -35,12 +35,12 @@ namespace IdentityModel.Client
             : this(address, new HttpClientHandler())
         { }
 
-        public TokenClient(string address, HttpMessageHandler innerHttpClientHandler)
+        public TokenClient(string address, HttpMessageHandler innerHttpMessageHandler)
         {
             if (address == null) throw new ArgumentNullException("address");
-            if (innerHttpClientHandler == null) throw new ArgumentNullException("innerHttpClientHandler");
+            if (innerHttpMessageHandler == null) throw new ArgumentNullException("innerHttpMessageHandler");
             
-            _client = new HttpClient(innerHttpClientHandler)
+            _client = new HttpClient(innerHttpMessageHandler)
             {
                 BaseAddress = new Uri(address)
             };
@@ -56,12 +56,12 @@ namespace IdentityModel.Client
             : this(address, clientId, string.Empty, new HttpClientHandler(), style)
         { }
 
-        public TokenClient(string address, string clientId, HttpMessageHandler innerHttpClientHandler)
-            : this(address, clientId, string.Empty, innerHttpClientHandler, AuthenticationStyle.PostValues)
+        public TokenClient(string address, string clientId, HttpMessageHandler innerHttpMessageHandler)
+            : this(address, clientId, string.Empty, innerHttpMessageHandler, AuthenticationStyle.PostValues)
         { }
 
-        public TokenClient(string address, string clientId, string clientSecret, HttpMessageHandler innerHttpClientHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
-            : this(address, innerHttpClientHandler)
+        public TokenClient(string address, string clientId, string clientSecret, HttpMessageHandler innerHttpMessageHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
+            : this(address, innerHttpMessageHandler)
         {
             if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("ClientId");
 

@@ -29,7 +29,7 @@ namespace IdentityModel.Client
             : this(endpoint, token, new HttpClientHandler())
         { }
 
-        public UserInfoClient(Uri endpoint, string token, HttpClientHandler innerHttpClientHandler)
+        public UserInfoClient(Uri endpoint, string token, HttpMessageHandler innerHttpMessageHandler)
         {
             if (endpoint == null)
                 throw new ArgumentNullException("endpoint");
@@ -37,10 +37,10 @@ namespace IdentityModel.Client
             if (string.IsNullOrEmpty(token))
                 throw new ArgumentNullException("token");
 
-            if (innerHttpClientHandler == null)
-                throw new ArgumentNullException("innerHttpClientHandler");
+            if (innerHttpMessageHandler == null)
+                throw new ArgumentNullException("innerHttpMessageHandler");
 
-            _client = new HttpClient(innerHttpClientHandler)
+            _client = new HttpClient(innerHttpMessageHandler)
             {
                 BaseAddress = endpoint
             };
