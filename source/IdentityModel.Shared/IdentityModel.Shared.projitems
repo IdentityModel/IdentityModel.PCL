@@ -16,6 +16,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Client\AuthorizeResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\BasicAuthenticationHeaderValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\HttpClientExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\IntrospectionClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\IntrospectionRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\IntrospectionResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\TokenClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\TokenClientExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\OAuth2Constants.cs" />
