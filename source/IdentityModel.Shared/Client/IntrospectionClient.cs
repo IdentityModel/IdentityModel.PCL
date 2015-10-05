@@ -52,8 +52,16 @@ namespace IdentityModel.Client
 
         public async Task<IntrospectionResponse> SendAsync(IntrospectionRequest request)
         {
+            if (request == null) throw new ArgumentNullException("request");
+            if (string.IsNullOrWhiteSpace(request.Token)) throw new ArgumentNullException("token");
+
             var form = new Dictionary<string, string>();
             form.Add("token", request.Token);
+
+            if (!string.IsNullOrWhiteSpace(request.TokenTypeHint))
+            {
+                form.Add("token_type_hint", request.TokenTypeHint);
+            }
 
             if (string.IsNullOrWhiteSpace(request.ClientId))
             {
