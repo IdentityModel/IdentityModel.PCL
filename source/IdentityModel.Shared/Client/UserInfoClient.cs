@@ -17,6 +17,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace IdentityModel.Client
@@ -44,6 +45,10 @@ namespace IdentityModel.Client
             {
                 BaseAddress = endpoint
             };
+
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
             _client.SetBearerToken(token);
         }

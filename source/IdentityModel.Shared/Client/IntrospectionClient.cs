@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
- using System;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace IdentityModel.Client
@@ -35,6 +36,10 @@ namespace IdentityModel.Client
             {
                 BaseAddress = new Uri(endpoint)
             };
+
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
             if (!string.IsNullOrWhiteSpace(clientId))
             {
