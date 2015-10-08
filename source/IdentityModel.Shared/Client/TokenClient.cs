@@ -70,15 +70,13 @@ namespace IdentityModel.Client
         {
             if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("ClientId");
 
+            AuthenticationStyle = style;
+            ClientId = clientId;
+            ClientSecret = clientSecret;
+
             if (style == AuthenticationStyle.BasicAuthentication)
             {
                 _client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(clientId, clientSecret);
-            }
-            else if (style == AuthenticationStyle.PostValues)
-            {
-                AuthenticationStyle = style;
-                ClientId = clientId;
-                ClientSecret = clientSecret;
             }
         }
 
