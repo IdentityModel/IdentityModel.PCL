@@ -76,7 +76,7 @@ namespace IdentityModel.Client
 
             try
             {
-                var response = await _client.PostAsync("", new FormUrlEncodedContent(form));
+                var response = await _client.PostAsync("", new FormUrlEncodedContent(form)).ConfigureAwait(false);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     return new IntrospectionResponse
