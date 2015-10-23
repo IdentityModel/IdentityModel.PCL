@@ -66,7 +66,9 @@ namespace IdentityModel.Client
             var response = await _client.GetAsync("").ConfigureAwait(false);
 
             if (response.StatusCode != HttpStatusCode.OK)
+            {
                 return new UserInfoResponse(response.StatusCode, response.ReasonPhrase);
+            }
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return new UserInfoResponse(content);
