@@ -18,6 +18,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace IdentityModel.Client
@@ -61,9 +62,9 @@ namespace IdentityModel.Client
             }
         }
 
-        public async Task<UserInfoResponse> GetAsync()
+        public async Task<UserInfoResponse> GetAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            var response = await _client.GetAsync("").ConfigureAwait(false);
+            var response = await _client.GetAsync("", cancellationToken).ConfigureAwait(false);
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
