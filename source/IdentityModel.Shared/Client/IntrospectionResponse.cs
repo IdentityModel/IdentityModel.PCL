@@ -66,7 +66,7 @@ namespace IdentityModel.Client
             catch (Exception ex)
             {
                 IsError = true;
-                Error = ex.Message;
+                Error = ex.ToString();
             }
         }
     }

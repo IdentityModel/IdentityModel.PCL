@@ -6,7 +6,7 @@ Param(
 $exists = Test-Path nuget.exe
 
 if ($exists -eq $false) {
-    $source = "https://www.nuget.org/nuget.exe"
+    $source = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
     Invoke-WebRequest $source -OutFile nuget.exe
 }
 

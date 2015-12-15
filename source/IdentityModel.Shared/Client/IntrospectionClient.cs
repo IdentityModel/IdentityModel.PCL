@@ -86,7 +86,7 @@ namespace IdentityModel.Client
                     };
                 }
 
-                return new IntrospectionResponse(await response.Content.ReadAsStringAsync());
+                return new IntrospectionResponse(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
             }
             catch (Exception ex)
             {
