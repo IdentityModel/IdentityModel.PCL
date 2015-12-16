@@ -31,6 +31,7 @@ namespace IdentityModel.Client
         public AuthenticationStyle AuthenticationStyle { get; set; }
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
+        public string Address { get; private set; }
 
         public TokenClient(string address)
             : this(address, new HttpClientHandler())
@@ -40,7 +41,8 @@ namespace IdentityModel.Client
         {
             if (address == null) throw new ArgumentNullException("address");
             if (innerHttpMessageHandler == null) throw new ArgumentNullException("innerHttpMessageHandler");
-            
+
+            Address = address;
             _client = new HttpClient(innerHttpMessageHandler)
             {
                 BaseAddress = new Uri(address)
