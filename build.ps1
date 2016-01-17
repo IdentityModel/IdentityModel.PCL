@@ -12,7 +12,7 @@ if ($exists -eq $false) {
 
 gci .\source -Recurse "packages.config" |% {
 	"Restoring " + $_.FullName
-	.\nuget.exe i $_.FullName -o .\source\packages
+	.\nuget.exe install $_.FullName -o .\source\packages
 }
 
 Import-Module .\source\packages\psake.4.4.1\tools\psake.psm1
