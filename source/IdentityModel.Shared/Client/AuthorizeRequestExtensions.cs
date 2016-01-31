@@ -25,47 +25,59 @@ namespace IdentityModel.Client
             string loginHint = null,
             string acrValues = null,
             string responseMode = null,
+            string codeChallenge = null,
+            string codeChallengeMethod = null,
             object extra = null)
         {
             var values = new Dictionary<string, string>
             {
-                { OAuth2Constants.ClientId, clientId },
-                { OAuth2Constants.ResponseType, responseType }
+                { OidcConstants.AuthorizeRequest.ClientId, clientId },
+                { OidcConstants.AuthorizeRequest.ResponseType, responseType }
             };
 
             if (!string.IsNullOrWhiteSpace(scope))
             {
-                values.Add(OAuth2Constants.Scope, scope);
+                values.Add(OidcConstants.AuthorizeRequest.Scope, scope);
             }
 
             if (!string.IsNullOrWhiteSpace(redirectUri))
             {
-                values.Add(OAuth2Constants.RedirectUri, redirectUri);
+                values.Add(OidcConstants.AuthorizeRequest.RedirectUri, redirectUri);
             }
 
             if (!string.IsNullOrWhiteSpace(state))
             {
-                values.Add(OAuth2Constants.State, state);
+                values.Add(OidcConstants.AuthorizeRequest.State, state);
             }
 
             if (!string.IsNullOrWhiteSpace(nonce))
             {
-                values.Add(OAuth2Constants.Nonce, nonce);
+                values.Add(OidcConstants.AuthorizeRequest.Nonce, nonce);
             }
 
             if (!string.IsNullOrWhiteSpace(loginHint))
             {
-                values.Add(OAuth2Constants.LoginHint, loginHint);
+                values.Add(OidcConstants.AuthorizeRequest.LoginHint, loginHint);
             }
 
             if (!string.IsNullOrWhiteSpace(acrValues))
             {
-                values.Add(OAuth2Constants.AcrValues, acrValues);
+                values.Add(OidcConstants.AuthorizeRequest.AcrValues, acrValues);
             }
 
             if (!string.IsNullOrWhiteSpace(responseMode))
             {
-                values.Add(OAuth2Constants.ResponseMode, responseMode);
+                values.Add(OidcConstants.AuthorizeRequest.ResponseMode, responseMode);
+            }
+
+            if (!string.IsNullOrWhiteSpace(codeChallenge))
+            {
+                values.Add(OidcConstants.AuthorizeRequest.CodeChallenge, codeChallenge);
+            }
+
+            if (!string.IsNullOrWhiteSpace(codeChallengeMethod))
+            {
+                values.Add(OidcConstants.AuthorizeRequest.CodeChallengeMethod, codeChallengeMethod);
             }
 
             return request.Create(Merge(values, ObjectToDictionary(extra)));
