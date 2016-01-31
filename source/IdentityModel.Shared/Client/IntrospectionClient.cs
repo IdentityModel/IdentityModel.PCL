@@ -14,6 +14,7 @@ namespace IdentityModel.Client
     public class IntrospectionClient
     {
         private readonly HttpClient _client;
+        private readonly string _clientId;
 
         public IntrospectionClient(string endpoint, string clientId = "", string clientSecret = "", HttpMessageHandler innerHttpMessageHandler = null)
         {
@@ -29,9 +30,13 @@ namespace IdentityModel.Client
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            if (!string.IsNullOrWhiteSpace(clientId))
+            if (!string.IsNullOrWhiteSpace(clientId) && !string.IsNullOrWhiteSpace(clientSecret))
             {
                 _client.SetBasicAuthentication(clientId, clientSecret);
+            }
+            else if (!string.IsNullOrWhiteSpace(clientId))
+            {
+                _clientId = clientId;
             }
         }
 
@@ -59,6 +64,10 @@ namespace IdentityModel.Client
             if (!string.IsNullOrWhiteSpace(request.ClientId))
             {
                 form.Add("client_id", request.ClientId);
+            }
+            else if (!string.IsNullOrWhiteSpace(_clientId))
+            {
+                form.Add("client_id", _clientId);
             }
 
             if (!string.IsNullOrWhiteSpace(request.ClientSecret))
