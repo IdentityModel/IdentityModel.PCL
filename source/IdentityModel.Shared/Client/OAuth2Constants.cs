@@ -2,8 +2,11 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using System;
+
 namespace IdentityModel.Client
 {
+    [Obsolete("Use OidcConstants instead. Will be removed in next major version.")]
     public static class OAuth2Constants
     {
         public const string GrantType = "grant_type";

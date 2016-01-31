@@ -16,12 +16,12 @@ namespace IdentityModel.Client
         {
             var fields = new Dictionary<string, string>
             {
-                { OAuth2Constants.GrantType, OAuth2Constants.GrantTypes.ClientCredentials }
+                { OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.ClientCredentials }
             };
 
             if (!string.IsNullOrWhiteSpace(scope))
             {
-                fields.Add(OAuth2Constants.Scope, scope);
+                fields.Add(OidcConstants.TokenRequest.Scope, scope);
             }
 
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
@@ -31,14 +31,14 @@ namespace IdentityModel.Client
         {
             var fields = new Dictionary<string, string>
             {
-                { OAuth2Constants.GrantType, OAuth2Constants.GrantTypes.Password },
-                { OAuth2Constants.UserName, userName },
-                { OAuth2Constants.Password, password }
+                { OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.Password },
+                { OidcConstants.TokenRequest.UserName, userName },
+                { OidcConstants.TokenRequest.Password, password }
             };
 
             if (!string.IsNullOrWhiteSpace(scope))
             {
-                fields.Add(OAuth2Constants.Scope, scope);
+                fields.Add(OidcConstants.TokenRequest.Scope, scope);
             }
 
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
@@ -48,9 +48,9 @@ namespace IdentityModel.Client
         {
             var fields = new Dictionary<string, string>
             {
-                { OAuth2Constants.GrantType, OAuth2Constants.GrantTypes.AuthorizationCode },
-                { OAuth2Constants.Code, code },
-                { OAuth2Constants.RedirectUri, redirectUri }
+                { OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.AuthorizationCode },
+                { OidcConstants.TokenRequest.Code, code },
+                { OidcConstants.TokenRequest.RedirectUri, redirectUri }
             };
 
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
@@ -60,8 +60,8 @@ namespace IdentityModel.Client
         {
             var fields = new Dictionary<string, string>
             {
-                { OAuth2Constants.GrantType, OAuth2Constants.GrantTypes.RefreshToken },
-                { OAuth2Constants.RefreshToken, refreshToken }
+                { OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.RefreshToken },
+                { OidcConstants.TokenRequest.RefreshToken, refreshToken }
             };
 
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
@@ -71,13 +71,13 @@ namespace IdentityModel.Client
         {
             var fields = new Dictionary<string, string>
             {
-                { OAuth2Constants.GrantType, assertionType },
-                { OAuth2Constants.Assertion, assertion },
+                { OidcConstants.TokenRequest.GrantType, assertionType },
+                { OidcConstants.TokenRequest.Assertion, assertion },
             };
 
             if (!string.IsNullOrWhiteSpace(scope))
             {
-                fields.Add(OAuth2Constants.Scope, scope);
+                fields.Add(OidcConstants.TokenRequest.Scope, scope);
             }
 
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
@@ -87,12 +87,12 @@ namespace IdentityModel.Client
         {
             var fields = new Dictionary<string, string>
             {
-                { OAuth2Constants.GrantType, grantType }
+                { OidcConstants.TokenRequest.GrantType, grantType }
             };
 
             if (!string.IsNullOrWhiteSpace(scope))
             {
-                fields.Add(OAuth2Constants.Scope, scope);
+                fields.Add(OidcConstants.TokenRequest.Scope, scope);
             }
 
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
@@ -109,11 +109,11 @@ namespace IdentityModel.Client
 
             if (client.AuthenticationStyle == AuthenticationStyle.PostValues)
             {
-                merged.Add(OAuth2Constants.ClientId, client.ClientId);
+                merged.Add(OidcConstants.TokenRequest.ClientId, client.ClientId);
 
                 if (!string.IsNullOrEmpty(client.ClientSecret))
                 {
-                    merged.Add(OAuth2Constants.ClientSecret, client.ClientSecret);
+                    merged.Add(OidcConstants.TokenRequest.ClientSecret, client.ClientSecret);
                 }
             }
 

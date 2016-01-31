@@ -66,7 +66,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.AccessToken);
+                return GetStringOrNull(OidcConstants.TokenResponse.AccessToken);
             }
         }
 
@@ -74,7 +74,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.IdentityToken);
+                return GetStringOrNull(OidcConstants.TokenResponse.IdentityToken);
             }
         }
 
@@ -82,7 +82,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.Error);
+                return GetStringOrNull(OidcConstants.TokenResponse.Error);
             }
         }
 
@@ -91,7 +91,7 @@ namespace IdentityModel.Client
             get
             {
                 return (IsHttpError ||
-                        !string.IsNullOrWhiteSpace(GetStringOrNull(OAuth2Constants.Error)));
+                        !string.IsNullOrWhiteSpace(GetStringOrNull(OidcConstants.TokenResponse.Error)));
             }
         }
 
@@ -99,7 +99,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetLongOrNull(OAuth2Constants.ExpiresIn);
+                return GetLongOrNull(OidcConstants.TokenResponse.ExpiresIn);
             }
         }
 
@@ -107,7 +107,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.TokenType);
+                return GetStringOrNull(OidcConstants.TokenResponse.TokenType);
             }
         }
 
@@ -115,7 +115,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.RefreshToken);
+                return GetStringOrNull(OidcConstants.TokenResponse.RefreshToken);
             }
         }
 

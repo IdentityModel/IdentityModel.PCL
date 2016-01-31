@@ -49,6 +49,19 @@ namespace IdentityModel
             public const string RegistrationNotSupported = "registration_not_supported";
         }
 
+        public static class AuthorizeResponse
+        {
+            public const string Scope         = "scope";
+            public const string Code          = "code";
+            public const string AccessToken   = "access_token";
+            public const string ExpiresIn     = "expires_in";
+            public const string TokenType     = "token_type";
+            public const string RefreshToken  = "refresh_token";
+            public const string IdentityToken = "id_token";
+            public const string State         = "state";
+            public const string Error         = "error";
+        }
+
         public static class TokenRequest
         {
             public const string GrantType           = "grant_type";
@@ -75,6 +88,16 @@ namespace IdentityModel
             public const string UnsupportedGrantType    = "unsupported_grant_type";
             public const string UnsupportedResponseType = "unsupported_response_type";
             public const string InvalidScope            = "invalid_scope";
+        }
+
+        public static class TokenResponse
+        {
+            public const string AccessToken   = "access_token";
+            public const string ExpiresIn     = "expires_in";
+            public const string TokenType     = "token_type";
+            public const string RefreshToken  = "refresh_token";
+            public const string IdentityToken = "id_token";
+            public const string Error         = "error";
         }
 
         public static class TokenTypes

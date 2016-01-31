@@ -16,7 +16,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return TryGet(OAuth2Constants.Code);
+                return TryGet(OidcConstants.AuthorizeResponse.Code);
             }
         }
 
@@ -24,7 +24,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return TryGet(OAuth2Constants.AccessToken);
+                return TryGet(OidcConstants.AuthorizeResponse.AccessToken);
             }
         }
 
@@ -32,7 +32,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return TryGet(OAuth2Constants.IdentityToken);
+                return TryGet(OidcConstants.AuthorizeResponse.IdentityToken);
             }
         }
 
@@ -42,7 +42,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return TryGet(OAuth2Constants.Error);
+                return TryGet(OidcConstants.AuthorizeResponse.Error);
             }
         }
 
@@ -50,7 +50,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                var value = TryGet(OAuth2Constants.ExpiresIn);
+                var value = TryGet(OidcConstants.AuthorizeResponse.ExpiresIn);
 
                 long longValue = 0;
                 long.TryParse(value, out longValue);
@@ -63,7 +63,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return TryGet(OAuth2Constants.Scope);
+                return TryGet(OidcConstants.AuthorizeResponse.Scope);
             }
         }
 
@@ -71,7 +71,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return TryGet(OAuth2Constants.TokenType);
+                return TryGet(OidcConstants.AuthorizeResponse.TokenType);
             }
         }
 
@@ -79,7 +79,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return TryGet(OAuth2Constants.State);
+                return TryGet(OidcConstants.AuthorizeResponse.State);
             }
         }
 
@@ -111,7 +111,7 @@ namespace IdentityModel.Client
                 fragments = new string[] { "", Raw };
             }
 
-            if (Raw.Contains(OAuth2Constants.Error))
+            if (Raw.Contains(OidcConstants.AuthorizeResponse.Error))
             {
                 IsError = true;
             }
