@@ -26,11 +26,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\UserInfoResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\Algorithms.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Constants\AuthenticationMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\SamlNameIdentifierFormats.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\TokenTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EpochTimeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JwtClaimTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OidcConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeConstantComparer.cs" />
   </ItemGroup>
   <ItemGroup>

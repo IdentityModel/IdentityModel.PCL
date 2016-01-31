@@ -1,18 +1,6 @@
-﻿/*
- * Copyright 2014, 2015 Dominick Baier, Brock Allen
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
 
 using Newtonsoft.Json.Linq;
 using System;
@@ -78,7 +66,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.AccessToken);
+                return GetStringOrNull(OidcConstants.TokenResponse.AccessToken);
             }
         }
 
@@ -86,7 +74,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.IdentityToken);
+                return GetStringOrNull(OidcConstants.TokenResponse.IdentityToken);
             }
         }
 
@@ -94,7 +82,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.Error);
+                return GetStringOrNull(OidcConstants.TokenResponse.Error);
             }
         }
 
@@ -103,7 +91,7 @@ namespace IdentityModel.Client
             get
             {
                 return (IsHttpError ||
-                        !string.IsNullOrWhiteSpace(GetStringOrNull(OAuth2Constants.Error)));
+                        !string.IsNullOrWhiteSpace(GetStringOrNull(OidcConstants.TokenResponse.Error)));
             }
         }
 
@@ -111,7 +99,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetLongOrNull(OAuth2Constants.ExpiresIn);
+                return GetLongOrNull(OidcConstants.TokenResponse.ExpiresIn);
             }
         }
 
@@ -119,7 +107,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.TokenType);
+                return GetStringOrNull(OidcConstants.TokenResponse.TokenType);
             }
         }
 
@@ -127,7 +115,7 @@ namespace IdentityModel.Client
         {
             get
             {
-                return GetStringOrNull(OAuth2Constants.RefreshToken);
+                return GetStringOrNull(OidcConstants.TokenResponse.RefreshToken);
             }
         }
 
