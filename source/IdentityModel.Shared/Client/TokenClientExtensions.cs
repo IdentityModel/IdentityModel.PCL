@@ -44,7 +44,7 @@ namespace IdentityModel.Client
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
 
-        public static Task<TokenResponse> RequestAuthorizationCodeAsync(this TokenClient client, string code, string redirectUri, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TokenResponse> RequestAuthorizationCodeAsync(this TokenClient client, string code, string redirectUri, string codeVerifier = null, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var fields = new Dictionary<string, string>
             {
@@ -52,6 +52,11 @@ namespace IdentityModel.Client
                 { OidcConstants.TokenRequest.Code, code },
                 { OidcConstants.TokenRequest.RedirectUri, redirectUri }
             };
+
+            if (!string.IsNullOrWhiteSpace(codeVerifier))
+            {
+                fields.Add(OidcConstants.TokenRequest.CodeVerifier, codeVerifier);
+            }
 
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
