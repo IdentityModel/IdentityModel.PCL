@@ -83,7 +83,7 @@ namespace IdentityModel.Client
             if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.BadRequest)
             {
                 var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                return new TokenResponse(content, response.StatusCode, response.ReasonPhrase, response.IsSuccessStatusCode);
+                return new TokenResponse(content);
             }
             else
             {
