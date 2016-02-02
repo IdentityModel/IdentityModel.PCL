@@ -26,10 +26,7 @@ namespace IdentityModel
 
         public static string CreateRandomKeyString(int length)
         {
-            var bytes = new byte[length];
-            new RNGCryptoServiceProvider().GetBytes(bytes);
-
-            return Convert.ToBase64String(bytes);
+            return Base64Url.Encode(CreateRandomKey(length));
         }
 
         public static string CreateUniqueId(int length = 16)
