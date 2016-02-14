@@ -62,6 +62,13 @@ namespace IdentityModel
             public const string Error         = "error";
         }
 
+        public static class EndSessionRequest
+        {
+            public const string IdTokenHint           = "id_token_hint";
+            public const string PostLogoutRedirectUri = "post_logout_redirect_uri";
+            public const string State                 = "state";
+        }
+
         public static class TokenRequest
         {
             public const string GrantType           = "grant_type";
