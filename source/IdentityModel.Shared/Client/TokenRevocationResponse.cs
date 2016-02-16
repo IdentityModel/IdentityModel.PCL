@@ -17,6 +17,10 @@ namespace IdentityModel.Client
         private HttpStatusCode _httpErrorstatusCode;
         private string _httpErrorReason;
 
+        public TokenRevocationResponse()
+        {
+        }
+
         public TokenRevocationResponse(string raw)
         {
             Raw = raw;
@@ -70,6 +74,14 @@ namespace IdentityModel.Client
             }
         }
 
+        public string ErrorDescription
+        {
+            get
+            {
+                return GetStringOrNull(OidcConstants.TokenResponse.ErrorDescription);
+            }
+        }
+
         public bool IsError
         {
             get
@@ -88,21 +100,6 @@ namespace IdentityModel.Client
             }
 
             return null;
-        }
-
-        protected virtual long GetLongOrNull(string name)
-        {
-            JToken value;
-            if (Json != null && Json.TryGetValue(name, out value))
-            {
-                long longValue = 0;
-                if (long.TryParse(value.ToString(), out longValue))
-                {
-                    return longValue;
-                }
-            }
-
-            return 0;
         }
     }
 }

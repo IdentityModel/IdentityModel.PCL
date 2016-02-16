@@ -45,18 +45,11 @@ namespace IdentityModel.Client
             : this(address, clientId, clientSecret, new HttpClientHandler(), style)
         { }
 
-        public TokenRevocationClient(string address, string clientId, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
-            : this(address, clientId, string.Empty, new HttpClientHandler(), style)
-        { }
-
-        public TokenRevocationClient(string address, string clientId, HttpMessageHandler innerHttpMessageHandler)
-            : this(address, clientId, string.Empty, innerHttpMessageHandler, AuthenticationStyle.PostValues)
-        { }
-
         public TokenRevocationClient(string address, string clientId, string clientSecret, HttpMessageHandler innerHttpMessageHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, innerHttpMessageHandler)
         {
-            if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("ClientId");
+            if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("clientId");
+            if (string.IsNullOrEmpty(clientSecret)) throw new ArgumentNullException("clientSecret");
 
             AuthenticationStyle = style;
             ClientId = clientId;
@@ -97,7 +90,11 @@ namespace IdentityModel.Client
 
             var response = await _client.PostAsync(string.Empty, new FormUrlEncodedContent(form), cancellationToken).ConfigureAwait(false);
 
-            if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.BadRequest)
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return new TokenRevocationResponse();
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
             {
                 var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return new TokenRevocationResponse(content);
