@@ -24,6 +24,7 @@ namespace IdentityModel.Client
             string nonce = null,
             string loginHint = null,
             string acrValues = null,
+            string prompt = null,
             string responseMode = null,
             string codeChallenge = null,
             string codeChallengeMethod = null,
@@ -63,6 +64,11 @@ namespace IdentityModel.Client
             if (!string.IsNullOrWhiteSpace(acrValues))
             {
                 values.Add(OidcConstants.AuthorizeRequest.AcrValues, acrValues);
+            }
+
+            if (!string.IsNullOrWhiteSpace(prompt))
+            {
+                values.Add(OidcConstants.AuthorizeRequest.Prompt, prompt);
             }
 
             if (!string.IsNullOrWhiteSpace(responseMode))
