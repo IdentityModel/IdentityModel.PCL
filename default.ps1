@@ -9,7 +9,7 @@ properties {
 	$nuget_path = "$base_directory\nuget.exe"
 
 	$buildNumber = 0;
-	$version = "1.5.1.0"
+	$version = "1.6.0.0"
 	$preRelease = $null
 }
 
