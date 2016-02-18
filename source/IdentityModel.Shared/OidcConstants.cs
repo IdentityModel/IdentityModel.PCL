@@ -99,12 +99,13 @@ namespace IdentityModel
 
         public static class TokenResponse
         {
-            public const string AccessToken   = "access_token";
-            public const string ExpiresIn     = "expires_in";
-            public const string TokenType     = "token_type";
-            public const string RefreshToken  = "refresh_token";
-            public const string IdentityToken = "id_token";
-            public const string Error         = "error";
+            public const string AccessToken         = "access_token";
+            public const string ExpiresIn           = "expires_in";
+            public const string TokenType           = "token_type";
+            public const string RefreshToken        = "refresh_token";
+            public const string IdentityToken       = "id_token";
+            public const string Error               = "error";
+            public const string ErrorDescription    = "error_description";
         }
 
         public static class TokenTypes
