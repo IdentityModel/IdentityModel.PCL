@@ -2,8 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System.Security.Cryptography;
-using System.Text;
+using IdentityModel.Extensions;
 
 namespace IdentityModel.Client
 {
@@ -11,15 +10,7 @@ namespace IdentityModel.Client
     {
         public static string ToCodeChallenge(this string input)
         {
-            if (string.IsNullOrWhiteSpace(input)) return string.Empty;
-
-            using (var sha = SHA256.Create())
-            {
-                var bytes = Encoding.ASCII.GetBytes(input);
-                var hash = sha.ComputeHash(bytes);
-
-                return Base64Url.Encode(hash);
-            }
+            return input.ToSha256(HashStringEncoding.Base64Url);
         }
     }
 }

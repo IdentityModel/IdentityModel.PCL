@@ -49,7 +49,9 @@
     <Compile Include="CryptoRandom.cs" />
     <Compile Include="Extensions\ConsoleExtensions.cs" />
     <Compile Include="Client\ProtocolHelperExtensions.cs" />
+    <Compile Include="Extensions\HashStringEncoding.cs" />
     <Compile Include="Extensions\SecurityTokens.cs" />
+    <Compile Include="Extensions\HashStringExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions\XDocumentExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions\XElementExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions\XmlConverter.cs" />
