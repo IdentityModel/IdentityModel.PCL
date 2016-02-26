@@ -61,6 +61,34 @@ namespace IdentityModel.Client
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
 
+        public static Task<TokenResponse> RequestAuthorizationCodePopAsync(this TokenClient client, string code, string redirectUri, string codeVerifier = null, string algorithm = null, string key = null, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var fields = new Dictionary<string, string>
+            {
+                { OidcConstants.TokenRequest.TokenType, OidcConstants.TokenRequestTypes.Pop  },
+                { OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.AuthorizationCode },
+                { OidcConstants.TokenRequest.Code, code },
+                { OidcConstants.TokenRequest.RedirectUri, redirectUri }
+            };
+
+            if (!string.IsNullOrWhiteSpace(codeVerifier))
+            {
+                fields.Add(OidcConstants.TokenRequest.CodeVerifier, codeVerifier);
+            }
+
+            if (!string.IsNullOrWhiteSpace(algorithm))
+            {
+                fields.Add(OidcConstants.TokenRequest.Algorithm, algorithm);
+            }
+
+            if (!string.IsNullOrWhiteSpace(key))
+            {
+                fields.Add(OidcConstants.TokenRequest.Key, key);
+            }
+
+            return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
+        }
+
         public static Task<TokenResponse> RequestRefreshTokenAsync(this TokenClient client, string refreshToken, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var fields = new Dictionary<string, string>
@@ -68,6 +96,28 @@ namespace IdentityModel.Client
                 { OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.RefreshToken },
                 { OidcConstants.TokenRequest.RefreshToken, refreshToken }
             };
+
+            return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
+        }
+
+        public static Task<TokenResponse> RequestRefreshTokenPopAsync(this TokenClient client, string refreshToken, string algorithm = null, string key = null, object extra = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var fields = new Dictionary<string, string>
+            {
+                { OidcConstants.TokenRequest.TokenType, OidcConstants.TokenRequestTypes.Pop  },
+                { OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.RefreshToken },
+                { OidcConstants.TokenRequest.RefreshToken, refreshToken }
+            };
+
+            if (!string.IsNullOrWhiteSpace(algorithm))
+            {
+                fields.Add(OidcConstants.TokenRequest.Algorithm, algorithm);
+            }
+
+            if (!string.IsNullOrWhiteSpace(key))
+            {
+                fields.Add(OidcConstants.TokenRequest.Key, key);
+            }
 
             return client.RequestAsync(Merge(client, fields, extra), cancellationToken);
         }
