@@ -5,11 +5,10 @@ properties {
 	$dist_directory = "$base_directory\distribution"
 	$sln_file = "$src_directory\IdentityModel.sln"
 	$target_config = "Release"
-	$framework_version = "v4.5"
 	$nuget_path = "$base_directory\nuget.exe"
 
 	$buildNumber = 0;
-	$version = "1.9.0.0"
+	$version = "1.9.1.0"
 	$preRelease = $null
 }
 
