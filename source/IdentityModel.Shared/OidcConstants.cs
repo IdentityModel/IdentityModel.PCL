@@ -124,10 +124,15 @@ namespace IdentityModel
             public const string RefreshToken  = "refresh_token";   
         }
 
-        public static class AuthorizationHeaderSchemes
+        public static class AuthenticationSchemes
         {
-            public const string Bearer = "Bearer";
-            public const string Pop    = "PoP";
+            public const string AuthorizationHeaderBearer = "Bearer";
+            public const string FormPostBearer            = "access_token";
+            public const string QueryStringBearer         = "access_token";
+
+            public const string AuthorizationHeaderPop    = "PoP";
+            public const string FormPostPop               = "pop_access_token";
+            public const string QueryStringPop            = "pop_access_token";
         }
 
         public static class GrantTypes
