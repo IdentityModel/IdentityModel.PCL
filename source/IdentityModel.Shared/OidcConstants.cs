@@ -85,7 +85,7 @@ namespace IdentityModel
             public const string Password            = "password";
             public const string CodeVerifier        = "code_verifier";
             public const string TokenType           = "token_type";
-            public const string Algorithm           = "token_type";
+            public const string Algorithm           = "alg";
             public const string Key                 = "key";
         }
 
