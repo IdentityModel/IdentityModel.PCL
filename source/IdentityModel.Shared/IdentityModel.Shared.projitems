@@ -33,6 +33,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Constants\TokenTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EpochTimeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JwtClaimTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Jwt\JsonWebAlgorithmsKeyTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Jwt\JsonWebkey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Jwt\JsonWebKeyParameterNames.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Jwt\JsonWebKeySet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OidcConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeConstantComparer.cs" />
   </ItemGroup>
