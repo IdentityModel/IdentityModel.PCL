@@ -54,7 +54,7 @@ namespace IdentityModel.Jwt
         /// <param name="json">a string that contains JSON Web Key parameters in JSON format.</param>
         public JsonWebKey(string json)
         {
-            if (string.IsNullOrWhiteSpace(json)) throw new ArgumentNullException(nameof(json));
+            if (string.IsNullOrWhiteSpace(json)) throw new ArgumentNullException("json");
 
             var key = JsonConvert.DeserializeObject<JsonWebKey>(json);
             Copy(key);
@@ -146,7 +146,7 @@ namespace IdentityModel.Jwt
             }
             set
             {
-                if (value == null) throw new ArgumentNullException(nameof(value));
+                if (value == null) throw new ArgumentNullException("KeyOps");
 
                 foreach (string keyOp in value)
                     _keyops.Add(keyOp);

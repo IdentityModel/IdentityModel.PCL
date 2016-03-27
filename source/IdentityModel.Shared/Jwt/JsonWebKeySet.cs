@@ -51,7 +51,7 @@ namespace IdentityModel.Jwt
         /// <exception cref="ArgumentNullException">if 'json' is null or whitespace.</exception>
         public JsonWebKeySet(string json)
         {
-            if (string.IsNullOrWhiteSpace(json)) throw new ArgumentNullException(nameof(json));
+            if (string.IsNullOrWhiteSpace(json)) throw new ArgumentNullException("json");
 
             var jwebKeys = JsonConvert.DeserializeObject<JsonWebKeySet>(json);
             _keys = jwebKeys._keys;
