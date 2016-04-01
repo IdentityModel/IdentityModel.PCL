@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Jwt\JsonWebkey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Jwt\JsonWebKeyParameterNames.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Jwt\JsonWebKeySet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Jwt\JwkExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OidcConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeConstantComparer.cs" />
   </ItemGroup>
