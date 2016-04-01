@@ -4,7 +4,7 @@
     <version>1.0.0</version>
     <authors>Dominick Baier, Brock Allen</authors>
     <owners>Dominick Baier, Brock Allen</owners>
-    <copyright>Dominick Baier, Brock Allen 2015</copyright>
+    <copyright>Dominick Baier, Brock Allen 2016</copyright>
 
     <projectUrl>http://github.com/identitymodel</projectUrl>
     <iconUrl>https://identityserver.github.io/Documentation/assets/images/icons/IDmodel_icon128.png</iconUrl>
@@ -26,12 +26,11 @@
 
     <dependencies>
       <group targetFramework="portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac">
-        <dependency id="Microsoft.Net.Http" version="2.2.28"/>
-        <dependency id="Microsoft.Bcl" version="[1.1.10, 2.0)" />
-        <dependency id="Microsoft.Bcl.Build" version="[1.0.21, 2.0)" />
+        <dependency id="Microsoft.Net.Http" version="2.2.29"/>
+        <dependency id="Newtonsoft.Json" version="8.0.3" />
       </group>
       <group targetFramework="net45">
-        <dependency id="Newtonsoft.Json" version="6.0.8" />
+        <dependency id="Newtonsoft.Json" version="8.0.3" />
       </group>
     </dependencies>
   </metadata>
