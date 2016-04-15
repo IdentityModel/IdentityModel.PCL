@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -10,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace IdentityModel.Client
 {
+    /// <summary>
+    /// HTTP message handler that encapsulates token handling and refresh
+    /// </summary>
     public class RefeshTokenHandler : DelegatingHandler
     {
         private string _accessToken;
@@ -18,6 +22,8 @@ namespace IdentityModel.Client
         private readonly TokenClient _tokenClient;
         private ReaderWriterLockSlim _lock;
         private int _lockTimeout = 2000;
+
+        public event EventHandler<TokenRefreshEventArgs> TokenRefresh;
 
         public string AccessToken
         {
@@ -118,7 +124,22 @@ namespace IdentityModel.Client
                         _accessToken = response.AccessToken;
                         _refreshToken = response.RefreshToken;
 
+                        TokenRefresh?.Invoke(this, new TokenRefreshEventArgs
+                        {
+                            IsError = false,
+                            AccessToken = response.AccessToken,
+                            RefreshToken = response.RefreshToken
+                        });
+
                         return true;
+                    }
+                    else
+                    {
+                        TokenRefresh?.Invoke(this, new TokenRefreshEventArgs
+                        {
+                            IsError = true,
+                            Error = response.Error
+                        });
                     }
 
                 }

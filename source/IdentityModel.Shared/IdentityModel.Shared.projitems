@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Client\IntrospectionRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\IntrospectionResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\RefreshTokenHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\TokenRefreshedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\TokenRevocationClientExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\TokenRevocationResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\TokenRevocationClient.cs" />
