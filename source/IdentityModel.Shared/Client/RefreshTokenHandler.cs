@@ -2,7 +2,6 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -23,8 +22,9 @@ namespace IdentityModel.Client
         private ReaderWriterLockSlim _lock;
         private int _lockTimeout = 2000;
 
-        public event EventHandler<TokenRefreshEventArgs> TokenRefresh;
-
+        /// <summary>
+        /// Gets the current access token
+        /// </summary>
         public string AccessToken
         {
             get
@@ -41,6 +41,9 @@ namespace IdentityModel.Client
             }
         }
 
+        /// <summary>
+        /// Gets the current refresh token
+        /// </summary>
         public string RefreshToken
         {
             get
@@ -57,19 +60,13 @@ namespace IdentityModel.Client
             }
         }
 
+        public RefeshTokenHandler(string tokenEndpoint, string clientId, string clientSecret, string refreshToken, string accessToken = null, HttpMessageHandler innerHandler = null)
+            : this(new TokenClient(tokenEndpoint, clientId, clientSecret), refreshToken, accessToken, innerHandler)
+        { }
+
         public RefeshTokenHandler(TokenClient client, string refreshToken, string accessToken = null, HttpMessageHandler innerHandler = null)
         {
             _tokenClient = client;
-            _refreshToken = refreshToken;
-            _accessToken = accessToken;
-
-            InnerHandler = innerHandler ?? new HttpClientHandler();
-            _lock = new ReaderWriterLockSlim();
-        }
-
-        public RefeshTokenHandler(string tokenEndpoint, string clientId, string clientSecret, string refreshToken, string accessToken = null, HttpMessageHandler innerHandler = null)
-        {
-            _tokenClient = new TokenClient(tokenEndpoint, clientId, clientSecret);
             _refreshToken = refreshToken;
             _accessToken = accessToken;
 
@@ -124,24 +121,8 @@ namespace IdentityModel.Client
                         _accessToken = response.AccessToken;
                         _refreshToken = response.RefreshToken;
 
-                        TokenRefresh?.Invoke(this, new TokenRefreshEventArgs
-                        {
-                            IsError = false,
-                            AccessToken = response.AccessToken,
-                            RefreshToken = response.RefreshToken
-                        });
-
                         return true;
                     }
-                    else
-                    {
-                        TokenRefresh?.Invoke(this, new TokenRefreshEventArgs
-                        {
-                            IsError = true,
-                            Error = response.Error
-                        });
-                    }
-
                 }
                 finally
                 {
