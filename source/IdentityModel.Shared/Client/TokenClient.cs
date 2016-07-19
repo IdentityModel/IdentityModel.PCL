@@ -12,10 +12,12 @@ using System.Threading.Tasks;
 
 namespace IdentityModel.Client
 {
-    public class TokenClient
+    public class TokenClient : IDisposable
     {
         protected HttpClient _client;
-        
+
+        private bool _disposed;
+
         public AuthenticationStyle AuthenticationStyle { get; set; }
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
@@ -28,7 +30,7 @@ namespace IdentityModel.Client
         {
             if (address == null) throw new ArgumentNullException("address");
             if (innerHttpMessageHandler == null) throw new ArgumentNullException("innerHttpMessageHandler");
-            
+
             _client = new HttpClient(innerHttpMessageHandler)
             {
                 BaseAddress = new Uri(address)
@@ -88,6 +90,21 @@ namespace IdentityModel.Client
             else
             {
                 return new TokenResponse(response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && !_disposed)
+            {
+                _disposed = true;
+                _client.Dispose();
             }
         }
     }
