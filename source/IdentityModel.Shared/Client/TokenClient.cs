@@ -18,10 +18,6 @@ namespace IdentityModel.Client
 
         private bool _disposed;
 
-        public AuthenticationStyle AuthenticationStyle { get; set; }
-        public string ClientId { get; set; }
-        public string ClientSecret { get; set; }
-
         public TokenClient(string address)
             : this(address, new HttpClientHandler())
         { }
@@ -70,8 +66,14 @@ namespace IdentityModel.Client
             }
         }
 
-        public TimeSpan Timeout 
-        { 
+        public AuthenticationStyle AuthenticationStyle { get; set; }
+
+        public string ClientId { get; set; }
+
+        public string ClientSecret { get; set; }
+
+        public TimeSpan Timeout
+        {
             set
             {
                 _client.Timeout = value;
