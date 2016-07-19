@@ -58,7 +58,7 @@ namespace IdentityModel.Client
         public TokenClient(string address, string clientId, string clientSecret, HttpMessageHandler innerHttpMessageHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, innerHttpMessageHandler)
         {
-            if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("ClientId");
+            if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("clientId");
 
             AuthenticationStyle = style;
             ClientId = clientId;
