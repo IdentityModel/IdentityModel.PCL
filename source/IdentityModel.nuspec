@@ -27,10 +27,10 @@
     <dependencies>
       <group targetFramework="portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac">
         <dependency id="Microsoft.Net.Http" version="2.2.29"/>
-        <dependency id="Newtonsoft.Json" version="8.0.3" />
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
       </group>
       <group targetFramework="net45">
-        <dependency id="Newtonsoft.Json" version="8.0.3" />
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
       </group>
     </dependencies>
   </metadata>
