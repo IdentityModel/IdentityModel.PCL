@@ -19,17 +19,21 @@ namespace IdentityModel.Client
         private bool _disposed;
 
         public TokenClient(string address)
-            : this(address, new HttpClientHandler())
+            : this(new Uri(address), new HttpClientHandler())
         { }
 
         public TokenClient(string address, HttpMessageHandler innerHttpMessageHandler)
+            : this(new Uri(address), innerHttpMessageHandler)
+        { }
+
+        public TokenClient(Uri address, HttpMessageHandler innerHttpMessageHandler)
         {
             if (address == null) throw new ArgumentNullException("address");
             if (innerHttpMessageHandler == null) throw new ArgumentNullException("innerHttpMessageHandler");
 
             _client = new HttpClient(innerHttpMessageHandler)
             {
-                BaseAddress = new Uri(address)
+                BaseAddress = address
             };
 
             _client.DefaultRequestHeaders.Accept.Clear();
@@ -40,18 +44,18 @@ namespace IdentityModel.Client
         }
 
         public TokenClient(string address, string clientId, string clientSecret, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
-            : this(address, clientId, clientSecret, new HttpClientHandler(), style)
+            : this(new Uri(address), clientId, clientSecret, new HttpClientHandler(), style)
         { }
 
         public TokenClient(string address, string clientId, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
-            : this(address, clientId, string.Empty, new HttpClientHandler(), style)
+            : this(new Uri(address), clientId, string.Empty, new HttpClientHandler(), style)
         { }
 
         public TokenClient(string address, string clientId, HttpMessageHandler innerHttpMessageHandler)
-            : this(address, clientId, string.Empty, innerHttpMessageHandler, AuthenticationStyle.PostValues)
+            : this(new Uri(address), clientId, string.Empty, innerHttpMessageHandler, AuthenticationStyle.PostValues)
         { }
 
-        public TokenClient(string address, string clientId, string clientSecret, HttpMessageHandler innerHttpMessageHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
+        public TokenClient(Uri address, string clientId, string clientSecret, HttpMessageHandler innerHttpMessageHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
             : this(address, innerHttpMessageHandler)
         {
             if (string.IsNullOrEmpty(clientId)) throw new ArgumentNullException("clientId");
@@ -64,6 +68,11 @@ namespace IdentityModel.Client
             {
                 _client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(clientId, clientSecret);
             }
+        }
+
+        public TokenClient(string address, string clientId, string clientSecret, HttpMessageHandler innerHttpMessageHandler, AuthenticationStyle style = AuthenticationStyle.BasicAuthentication)
+            : this(new Uri(address), clientId, clientSecret, innerHttpMessageHandler, style)
+        {
         }
 
         public AuthenticationStyle AuthenticationStyle { get; set; }
