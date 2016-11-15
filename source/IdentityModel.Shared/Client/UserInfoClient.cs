@@ -13,6 +13,7 @@ namespace IdentityModel.Client
 {
     public class UserInfoClient
     {
+        private readonly string _token;
         private readonly HttpClient _client;
 
         public UserInfoClient(Uri endpoint, string token)
@@ -21,6 +22,7 @@ namespace IdentityModel.Client
 
         public UserInfoClient(Uri endpoint, string token, HttpMessageHandler innerHttpMessageHandler)
         {
+            _token = token;
             if (endpoint == null)
                 throw new ArgumentNullException("endpoint");
 
@@ -34,12 +36,6 @@ namespace IdentityModel.Client
             {
                 BaseAddress = endpoint
             };
-
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            _client.SetBearerToken(token);
         }
 
         public TimeSpan Timeout
@@ -52,7 +48,10 @@ namespace IdentityModel.Client
 
         public async Task<UserInfoResponse> GetAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            var response = await _client.GetAsync("", cancellationToken).ConfigureAwait(false);
+            var msg = new HttpRequestMessage(HttpMethod.Get, "");
+            msg.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            msg.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+            var response = await _client.SendAsync(msg, cancellationToken).ConfigureAwait(false);
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
