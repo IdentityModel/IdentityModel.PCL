@@ -1,0 +1,123 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup Label="Configuration">
+    <OutputPath>..\..\build\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputType>library</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="**\*.cs" />
+    <EmbeddedResource Include="**\*.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\IdentityModel.Shared\Base64Url.cs">
+      <Link>Base64Url.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\AuthenticationStyle.cs">
+      <Link>Client\AuthenticationStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\AuthorizeRequest.cs">
+      <Link>Client\AuthorizeRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\AuthorizeRequestExtensions.cs">
+      <Link>Client\AuthorizeRequestExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\AuthorizeResponse.cs">
+      <Link>Client\AuthorizeResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\BasicAuthenticationHeaderValue.cs">
+      <Link>Client\BasicAuthenticationHeaderValue.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\HttpClientExtensions.cs">
+      <Link>Client\HttpClientExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\IntrospectionClient.cs">
+      <Link>Client\IntrospectionClient.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\IntrospectionRequest.cs">
+      <Link>Client\IntrospectionRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\IntrospectionResponse.cs">
+      <Link>Client\IntrospectionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\OAuth2Constants.cs">
+      <Link>Client\OAuth2Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\RefreshTokenHandler.cs">
+      <Link>Client\RefreshTokenHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\TokenClient.cs">
+      <Link>Client\TokenClient.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\TokenClientExtensions.cs">
+      <Link>Client\TokenClientExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\TokenResponse.cs">
+      <Link>Client\TokenResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\TokenRevocationClient.cs">
+      <Link>Client\TokenRevocationClient.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\TokenRevocationClientExtensions.cs">
+      <Link>Client\TokenRevocationClientExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\TokenRevocationResponse.cs">
+      <Link>Client\TokenRevocationResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\UserInfoClient.cs">
+      <Link>Client\UserInfoClient.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Client\UserInfoResponse.cs">
+      <Link>Client\UserInfoResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Constants\Algorithms.cs">
+      <Link>Constants\Algorithms.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Constants\SamlNameIdentifierFormats.cs">
+      <Link>Constants\SamlNameIdentifierFormats.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Constants\TokenTypes.cs">
+      <Link>Constants\TokenTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\EpochTimeExtensions.cs">
+      <Link>EpochTimeExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\JwtClaimTypes.cs">
+      <Link>JwtClaimTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Jwt\JsonWebAlgorithmsKeyTypes.cs">
+      <Link>Jwt\JsonWebAlgorithmsKeyTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Jwt\JsonWebkey.cs">
+      <Link>Jwt\JsonWebkey.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Jwt\JsonWebKeyParameterNames.cs">
+      <Link>Jwt\JsonWebKeyParameterNames.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Jwt\JsonWebKeySet.cs">
+      <Link>Jwt\JsonWebKeySet.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\Jwt\JwkExtensions.cs">
+      <Link>Jwt\JwkExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\OidcConstants.cs">
+      <Link>OidcConstants.cs</Link>
+    </Compile>
+    <Compile Include="..\IdentityModel.Shared\TimeConstantComparer.cs">
+      <Link>TimeConstantComparer.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="System.Net.Http" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Client\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Jwt\" />
+  </ItemGroup>
+</Project>
