@@ -17,7 +17,7 @@ namespace IdentityModel.Client
         private HttpStatusCode _httpErrorstatusCode;
         private string _httpErrorReason;
 
-        public TokenResponse(string raw)
+        public TokenResponse(string raw, HttpStatusCode statusCode = 0, string reasonPhrase = null, bool isHttpError = false) : this(statusCode, reasonPhrase, isHttpError)
         {
             Raw = raw;
 
@@ -31,9 +31,9 @@ namespace IdentityModel.Client
             }
         }
 
-        public TokenResponse(HttpStatusCode statusCode, string reason)
+        public TokenResponse(HttpStatusCode statusCode, string reason, bool isHttpError = true)
         {
-            _isHttpError = true;
+            _isHttpError = isHttpError;
             _httpErrorstatusCode = statusCode;
             _httpErrorReason = reason;
         }
