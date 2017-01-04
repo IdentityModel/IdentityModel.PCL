@@ -20,7 +20,7 @@ namespace System.Net.Http
 
         public static void SetBearerToken(this HttpClient client, string token)
         {
-            client.SetToken("Bearer", token);
+          SetToken(client, "Bearer", token);
         }
-    }
+  }
 }
