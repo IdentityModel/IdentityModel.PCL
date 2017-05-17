@@ -3,6 +3,7 @@
 
 distribution/
 nuget.exe
+/.vs/
 
 # User-specific files
 *.suo
