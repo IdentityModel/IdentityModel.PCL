@@ -3,7 +3,6 @@
 
 distribution/
 nuget.exe
-/.vs/
 
 # User-specific files
 *.suo
@@ -157,4 +156,3 @@ $RECYCLE.BIN/
 
 
 *_NCrunch_*
-
