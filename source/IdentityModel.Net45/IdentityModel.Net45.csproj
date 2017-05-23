@@ -50,6 +50,7 @@
     <Compile Include="ClaimComparer.cs" />
     <Compile Include="Client\UserInfoResponseExtensions.cs" />
     <Compile Include="CryptoRandom.cs" />
+    <Compile Include="Client\AuthorizeResponseExtensions.cs" />
     <Compile Include="Extensions\ConsoleExtensions.cs" />
     <Compile Include="Client\ProtocolHelperExtensions.cs" />
     <Compile Include="Extensions\HashStringEncoding.cs" />
