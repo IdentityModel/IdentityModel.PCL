@@ -15,8 +15,16 @@ namespace IdentityModel.Client
     {
         private readonly HttpClient _client;
 
+        public UserInfoClient(string endpoint, string token)
+            : this(new Uri(endpoint), token, new HttpClientHandler())
+        { }
+
         public UserInfoClient(Uri endpoint, string token)
             : this(endpoint, token, new HttpClientHandler())
+        { }
+
+        public UserInfoClient(string endpoint, string token, HttpMessageHandler innerHttpMessageHandler)
+            : this(new Uri(endpoint), token, innerHttpMessageHandler)
         { }
 
         public UserInfoClient(Uri endpoint, string token, HttpMessageHandler innerHttpMessageHandler)
