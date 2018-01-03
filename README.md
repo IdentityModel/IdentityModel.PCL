@@ -1,3 +1,5 @@
+** all new work is happening [here](https://github.com/IdentityModel/IdentityModel2) **
+
 # IdentityModel
 A helper library for claims-based identity, OAuth 2.0 and OpenID Connect.
 
